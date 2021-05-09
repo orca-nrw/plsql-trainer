@@ -1,0 +1,14 @@
+{
+  "name": "plsql-trainer",
+  "version": "1.0.0",
+  "description": "Open-Source PLSQL-trainer for the EILD.nrw project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Kosmehl",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
