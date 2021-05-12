@@ -105,3 +105,6 @@ dist
 
 # Postgres Database
 /db/pgdata/
+
+# Database Secrets
+dbconfig.js
