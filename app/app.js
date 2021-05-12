@@ -17,7 +17,7 @@ app.use(express.static(__dirname))
 Application Code
 */
 app.get("/", async (req, res) => {
-    res.send("Hello World!")
+    res.render(path + 'plsql', {})
 })
 
 // Start server
