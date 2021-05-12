@@ -1,0 +1,28 @@
+div(class="header-wrapper")
+    header(class="titleHeader" role="banner")
+        div(class='container headercontainer')
+            div(class='row')
+                h1(class='logo col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8')
+                    a(href="/index")
+                        img(src="/img/edb_logo_header3.png" width="270" height="130" alt="EDB - Das eLearning Datenbank Portal")
+                h1(class="tlogo col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4")
+                    img(src="/img/EILD-Logo_LabelUnten_klein.png" class="pull-right img-responsive" width="140" height="70")
+
+    nav(class='navbar navbar-inverse' role='navigation')
+        div(class='container-fluid navcontainer')
+            //Brand and toggle get grouped for better mobile display
+            div(class='navbar-header')
+                button(type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false')
+                    span(class='sr-only') Toggle navigation
+                    span(class='icon-bar')
+                    span(class='icon-bar')
+                    span(class='icon-bar')
+
+            //Collect the nav links, forms, and other content for toggling
+            div(class='collapse navbar-collapse' id="bs-example-navbar-collapse-1")
+                // TODO change CSS and remove list container
+                ul(class='nav navbar-nav')
+                    li(class=active_index && 'active')
+                        a(href='/') Startseite
+                            span(class='sr-only') (current)
+

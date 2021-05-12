@@ -1,0 +1,103 @@
+// layout.pug
+doctype html
+html(lang='de')
+    head
+        title EDB - #{title}
+
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+        // Fuer eine optimale Darstellung auf mobilen Geräten, damit gezoomt werden kann
+
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
+        meta(name="author" content="Heide Faeskorn-Woyke, Birgit Bertelsmeier, Nadim Khan, Teodora Petrisor")
+        meta(name="city" content="Gummersbach")
+        meta(name="country" content="Germany")
+        meta(name="state" content="Nordrhein-Westfalen")
+        meta(name="zipcode" content="51643")
+        meta(name="geo.position" content="51.0239;07.5625")
+        meta(name="geo.placement" content="Gummersbach Nordrhein-Westfalen")
+        meta(name="geo.region" content="DE-NRW")
+        meta(name="icbm" content="51.0239;07.5625")
+        meta(name="programmer" content="Nadim Khan, Teodora Petrisor")
+        meta(name="copyright" content="TH-K&ouml;n, Campus Gummersbach")
+        meta(name="distribution" content="global")
+        meta(name="robots" content="follow")
+        meta(name="revisit-after" content="")
+        meta(name="language" content="deutsch, de")
+        meta(name="keywords" content="edb, eLearning Datenbank, Datenbank MCT, SQL-Trainer, Select2OBaum, B-Baum-Zeichner, TH Koeln")
+        meta(name="description" lang="de" content="Ziel dieser WEB-Applikation ist die Unterstützung für Studenten und Leser, die sich intensiv mit dem Fach Datenbanken auseinandersetzen möchten. Die Benutzung der verschiedenen interaktiven Werkzeuge ersetzt nicht den Vorlesungs- und Praktikumsbesuch bzw. das Lesen eines Buchs, sondern ist als zusätzliche Hilfestellung gedacht.")
+
+        link(rel='apple-touch-icon', sizes='57x57', href='/img/apple-icon-57x57.png')
+        link(rel='apple-touch-icon', sizes='60x60', href='/img/apple-icon-60x60.png')
+        link(rel='apple-touch-icon', sizes='72x72', href='/img/apple-icon-72x72.png')
+        link(rel='apple-touch-icon', sizes='76x76', href='/img/apple-icon-76x76.png')
+        link(rel='apple-touch-icon', sizes='114x114', href='/img/apple-icon-114x114.png')
+        link(rel='apple-touch-icon', sizes='120x120', href='/img/apple-icon-120x120.png')
+        link(rel='apple-touch-icon', sizes='144x144', href='/img/apple-icon-144x144.png')
+        link(rel='apple-touch-icon', sizes='152x152', href='/img/apple-icon-152x152.png')
+        link(rel='apple-touch-icon', sizes='180x180', href='/img/apple-icon-180x180.png')
+        link(rel='icon', type='image/png', sizes='192x192', href='/img/android-icon-192x192.png')
+        link(rel='icon', type='image/png', sizes='32x32', href='/img/favicon-32x32.png')
+        link(rel='icon', type='image/png', sizes='96x96', href='/img/favicon-96x96.png')
+        link(rel='icon', type='image/png', sizes='16x16', href='/img/favicon-16x16.png')
+        //- link(rel='manifest', href='/manifest.json')
+        meta(name='msapplication-TileColor', content='#ffffff')
+        meta(name='msapplication-TileImage', content='/img/ms-icon-144x144.png')
+        meta(name='theme-color', content='#ffffff')
+
+
+
+        // head scripts block
+        block head_scripts
+            <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+                script(src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
+                script(src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js")
+            <![endif]-->
+
+        // stylesheets block
+        block stylesheets
+            // Bootstrap
+            link(rel='stylesheet', href='/css/bootstrap.css')
+            // Main CSS
+            link(rel='stylesheet', href='/css/mainstyles.css')
+            //Carousel CSS
+            link#carouselstyle(type='text/css', rel='stylesheet', href='/css/carousel.css')
+            link(rel='stylesheet', href='/css/font-awesome.min.css', media='all')
+            link(rel='stylesheet', type='text/css', href='/css/animate.min.css')
+
+
+    body.body
+
+        // navbar block
+        block navbar
+            include navbar.pug
+
+        .loader#loader
+            .spinner
+                .double-bounce1
+                .double-bounce2
+
+        // content block
+        block content
+
+        // footer block
+        block footer
+            include footer.pug
+
+        // foot scripts block
+        block foot_scripts
+            // jQuery (necessary for Bootstrap's JavaScript plugins)
+            script(src="/js/jquery/1.12.4/jquery.min.js")
+            // Form validator
+            script(src="/js/bootstrap-validator.min.js")
+            // Include all compiled plugins (below), or include individual files as needed
+            script(src="/js/bootstrap.min.js")
+            //Carousel animation
+            script(src='/js/carousel.js')
+            // Util functions
+            script(src='/js/utils.js')
