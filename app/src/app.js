@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const db = require('./database')
 
 /*
     Server Configuration
@@ -16,7 +17,7 @@ app.use(express.static(__dirname))
 /*
 Application Code
 */
-app.get("/", async (req, res) => {
+app.get(["/", "/index"], async (req, res) => {
     res.render(path + 'plsql', {})
 })
 
