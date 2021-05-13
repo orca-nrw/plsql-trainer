@@ -2,15 +2,19 @@
   "name": "plsql-trainer",
   "version": "1.0.0",
   "description": "Open-Source PLSQL-trainer for the EILD.nrw project",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon -L app.js"
+    "start": "node src/app.js",
+    "dev": "nodemon -L src/app.js"
   },
   "author": "Alexander Kosmehl",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "oracledb": "^5.1.0",
     "pug": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
