@@ -107,4 +107,4 @@ dist
 /db/pgdata/
 
 # Database Secrets
-dbconfig.js
+app/src/dbconfig.js
