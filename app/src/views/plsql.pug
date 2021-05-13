@@ -1,46 +1,26 @@
 extends layout
 
 block append stylesheets
-    link(rel='stylesheet', type='text/css', href='css/style.css')
+    link(rel='stylesheet', type='text/css', href='/css/style.css')
 
 block content
     div(class="main-wrapper" role="main")
-        br
-        div.jumbotron
-            center
-                h1 PL/SQL-Trainer
-            br
-            p(class="lead") Bitte wählen Sie ein Themengebiet aus:
-            div(class='row')
-                a(href="/apps/plsql/trigger" role="button")
-                    div(class="col-sm-6 col-md-4")
-                        div(class="btn btn-primary btn-block")
-                            br
-                            br
-                            br
-                            h2 Trigger
-                            br
-                            br
-                            br
-
-                a(href="/apps/plsql/functions" role="button")
-                    div(class="col-sm-6 col-md-4")
-                        div(class="btn btn-primary btn-block")
-                            br
-                            br
-                            br
-                            h2 Funktionen
-                            br
-                            br
-                            br
-
-                a(href="/apps/plsql/procedures" role="button")
-                    div(class="col-sm-6 col-md-4")
-                        div(class="btn btn-primary btn-block")
-                            br
-                            br
-                            br
-                            h2 Prozeduren
-                            br
-                            br
-                            br
+        div(class="container main-content-container")
+            div.jumbotron
+                center
+                    h1 PL/SQL-Trainer
+                br
+                p(class="lead") Bitte wählen Sie ein Themengebiet aus:
+                div(class='row')
+                    a(href="/trigger" role="button")
+                        div(class="col-sm-6 col-md-4")
+                            div(class="btn btn-primary btn-block" style="padding: 50px 0")
+                                h2 Trigger
+                    a(href="/functions" role="button")
+                        div(class="col-sm-6 col-md-4")
+                            div(class="btn btn-primary btn-block" style="padding: 50px 0")
+                                h2 Funktionen
+                    a(href="/procedures" role="button")
+                        div(class="col-sm-6 col-md-4")
+                            div(class="btn btn-primary btn-block" style="padding: 50px 0")
+                                h2 Prozeduren
