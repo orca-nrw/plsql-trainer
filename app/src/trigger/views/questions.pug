@@ -1,0 +1,50 @@
+extends ../../views/layout
+
+block append stylesheets
+    link(rel='stylesheet', type='text/css', href='/css/style.css')
+    link(rel='stylesheet', type='text/css', href='/css/eq-height.css')
+
+block content
+    div(class="main-wrapper" role="main")
+
+        //include ../../../../views/errors.pug
+        //include ../../../../views/success.pug
+
+        ol(class="breadcrumb")
+            li(class="active")
+                strong PL/SQL-Trainer (Trigger-Trainer)
+            li
+                a(href="./") Startseite
+            li(class="active") Aufgabenübersicht
+        br
+
+        div(class="container main-content-container")
+            center
+                h1 Aufgaben Übersicht
+                p Wähle eine der unten aufgelisteten Aufgabe aus und klicke auf "Loslegen" um die Bearbeitung der Aufgabe zu starten!
+
+            - var itemsPerRow = 2; // This can be any positive number
+            each question, i in questions
+                if (i % itemsPerRow == 0)
+                    div(class='row is-table-row')
+                        each question, j in questions
+                            if (j - i >= 0 && j - i < itemsPerRow)
+                                div(class='col-md-6 col-question')
+                                    div(class='box')
+                                        h4
+                                            strong Aufgabe #{question.questionid}
+                                            small &nbsp; Typ: #{question.questiontyp}
+
+                                        p #{question.text}
+                                        form(
+                                            id='mct_domains_form'
+                                            class=''
+                                            method='get'
+                                            action='/apps/plsql/trigger/question'
+                                        )
+                                            input(
+                                                type='hidden'
+                                                name='question'
+                                                value=question.questionid
+                                            )
+                                            button(class='btn btn-block btn-danger') Loslegen

@@ -1,0 +1,35 @@
+extends ../../views/layout
+
+block append stylesheets
+    link(rel='stylesheet', type='text/css', href='/apps/plsqltrainer/css/style.css')
+
+block content
+    div(class="main-wrapper" role="main")
+
+        //include ../../../../views/errors.pug
+        //include ../../../../views/success.pug
+
+        ol(class="breadcrumb")
+            li(class="active")
+                strong PL/SQL-Trainer (Trigger-Trainer)
+            li(class="active") Startseite
+        br
+
+        div(class="container main-content-container")
+            div.jumbotron
+                center
+                    h1 Trigger-Trainer
+                br
+                p(class="lead") Mit dem Trigger-Trainer können Sie interaktiv in das Thema Oracle-PL/SQL und aktive Datenbanken einsteigen. Nach einer vorgegeben Aufgabenbeschreibung erstellen Sie selbst einen Datenbanktrigger, der temporär in die Datenbank eingestellt, übersetzt und aktiviert wird.
+                p(class="lead") Es werden Ihnen Oracle-Fehlermeldungen zurückgeliefert, wenn Sie einen Syntaxfehler machen. Dabei ist zu beachten, dass der vorgegebene Triggername benutzt wird.
+                p(class="lead") Falls der Trigger syntaktisch korrekt ist, wird geprüft, ob auch die Semantik der im Aufgabentext beschriebenen Anforderung genügt. Das geschieht, in dem ein vorgegebenes Datenbankereignis (INSERT, UPDATE oder DELETE) an die Datenbank geschickt wird. Falls Ihr sellbstprogrammierter Trigger das gleiche Ergebnis liefert wie der Trigger der Musterlösung, wird die Aufgabe als korrekt gewertet.
+                br
+                center
+                    form(
+                        class=''
+                        method='get'
+                        action='/trigger/questions'
+                    )
+
+                        button(type='submit', class='btn btn-primary btn-lg') Test starten
+                br
