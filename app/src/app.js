@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-
+const triggerRouter = require('./trigger/router')
 
 /*
     Server Configuration
@@ -20,6 +20,11 @@ Application Code
 app.get(["/", "/index"], async (req, res) => {
     res.render(path + 'plsql', {})
 })
+
+/*
+Submodules
+ */
+app.use('/trigger', triggerRouter)
 
 // Start server
 app.listen(8080, () => {
