@@ -2,7 +2,7 @@ const database = require('./database')
 
 /**
  * Formatted Question to be used in pug
- * @typedef {{QuestionId: number, Text: string, TestTable: string, TriggerName: string, SampleTrigger: string, QuestionTyp: string, NeededTable: string}} Question
+ * @typedef {{questionid: number, text: string, testtable: string, triggername: string, sampletrigger: string, questiontyp: string, neededtable: string}} Question
  */
 
 /**
@@ -41,6 +41,7 @@ async function getQuestions() {
         let formattedQuestion = formatQuestion(rawQuestions.metaData, row)
         formattedQuestions.push(formattedQuestion)
     }
+    formattedQuestions.sort((x,y) => x.questionid - y.questionid)
     return formattedQuestions
 }
 
