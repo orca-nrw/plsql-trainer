@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const triggerRouter = require('./trigger/router')
+const service = require('./service')
 
 /*
     Server Configuration
@@ -19,6 +20,14 @@ Application Code
 */
 app.get(["/", "/index"], async (req, res) => {
     res.render(path + 'plsql', {})
+})
+
+app.get('/table/:tableName', async (req, res) => {
+    let variables = {
+        tableName: req.params.tableName,
+        table: await service.getFormattedTable(req.params.tableName)
+    }
+    res.render(path + 'table', variables)
 })
 
 /*
