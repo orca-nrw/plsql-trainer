@@ -1,0 +1,21 @@
+extends layout
+
+block append stylesheets
+    link(rel='stylesheet', type='text/css', href='/apps/plsqltrainer/css/style.css')
+
+block content
+    div(class="main-wrapper" role="main")
+        div(class="container main-content-container")
+            h1 Tabelle: #{tableName}
+
+            div(class='table-responsive')
+                table(class="table table-bordered")
+                    thead
+                        tr
+                            each header in table.headers
+                                th #{header}
+                    tbody
+                        each row in table.rows
+                            tr
+                                each entry in row
+                                    td #{entry}
