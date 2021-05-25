@@ -6,10 +6,6 @@ block append stylesheets
 
 block content
     div(class="main-wrapper" role="main")
-
-        //include ../../../../views/errors.pug
-        //include ../../../../views/success.pug
-
         ol(class="breadcrumb")
             li(class="active")
                 strong PL/SQL-Trainer (Trigger-Trainer)
@@ -38,13 +34,6 @@ block content
                                         p #{question.text}
                                         form(
                                             id='mct_domains_form'
-                                            class=''
-                                            method='get'
-                                            action='/apps/plsql/trigger/question'
+                                            action='/trigger/question/' + question.questionid
                                         )
-                                            input(
-                                                type='hidden'
-                                                name='question'
-                                                value=question.questionid
-                                            )
                                             button(class='btn btn-block btn-danger') Loslegen
