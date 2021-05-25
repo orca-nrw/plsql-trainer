@@ -7,10 +7,6 @@ block append stylesheets
 
 block content
     div(class="main-wrapper" role="main")
-
-        //include ../../../../views/errors.pug
-        //include ../../../../views/success.pug
-
         ol(class="breadcrumb")
             li(class="active")
                 strong PL/SQL-Trainer (Trigger-Trainer)
@@ -22,99 +18,98 @@ block content
         br
 
         div(class="container main-content-container")
-                each question in questions
-                    h1 Aufgabe #{question.questionid}
-                    p
-                        u
-                            strong Beschreibung:
-                    p #{question.text}
-                    p
-                        i
-                            u Benötigte Tabellen:
-                        |   #{question.neededtable}
-                    p
-                        i
-                            u Hinweis:
-                        |   Klicke unten auf den Tabellennamen in der Liste, um dir diese anzeigen zu lassen!
-                    form(
-                    id='mct_domains_form'
-                    class=''
-                    method='post'
-                    action='./evaluation'
-                    )
-                        small
-                            strong Aufgabe programmieren:
-                        textarea(class='form-control' rows="10" name="test_trigger" id="code" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}")
-                            | #{test_trigger}
-                        input(type='hidden' name='question_id' value=question.questionid)
-                        input(type='hidden' name='needed_tables' value=question.neededtable)
-                        br
-                        button(class='btn btn-danger btn-block') PL/SQL-Code prüfen
-                        br
-                hr
-                div(class='row')
-                    div(class='col-md-3')
-                        h4 Alle Tabellen
-                        ul
-                            a(target="popup" href="../table?name=Abteilungen" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Abteilungen
-                            a(target="popup" href="../table?name=Angestellte" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Angestellte
-                            a(target="popup" href="../table?name=Artikel" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Artikel
-                            a(target="popup" href="../table?name=Auftraege" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Auftraege
-                            a(target="popup" href="../table?name=Auftragspositionen" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Auftragsposition
-                            a(target="popup" href="../table?name=Geh_Klassen" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Geh_Klassen
-                            a(target="popup" href="../table?name=Gehaltsprotokoll" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Gehaltsprotokoll
-                            a(target="popup" href="../table?name=Kunden" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Kunden
-                            a(target="popup" href="../table?name=Lager" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Lager
-                            a(target="popup" href="../table?name=Lagerbestand" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Lagerbestand
-                    div(class='col-md-3')
-                        h4 &nbsp;
-                        ul
-                            a(target="popup" href="../table?name=Lieferanten" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Lieferanten
-                            a(target="popup" href="../table?name=Lieferprogramme" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Lieferprogramme
-                            a(target="popup" href="../table?name=Lieferungen" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Lieferungen
-                            a(target="popup" href="../table?name=Orte" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Orte
-                            a(target="popup" href="../table?name=Positionsarchiv" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Positionsarchiv
-                            a(target="popup" href="../table?name=Struktur" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Struktur
-                            a(target="popup" href="../table?name=Teile" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Teile
-                            a(target="popup" href="../table?name=Teile_Werke" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Teile_Werke
-                            a(target="popup" href="../table?name=Werke" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Werke
-                    div(class='col-md-3')
-                        h4 Sonstiges
-                        ul
-                            a(target="popup" href="../table?name=Rechnungen" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li View: Rechnungen
-                            a(target="popup" href="../diagramm" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
-                                li Diagramm: Tabellen
-                    div(class='col-md-3')
-                        h4 Tipps & Tricks
-                        ul
-                            a(target="_blank" href="http://wikis.gm.fh-koeln.de/wiki_db/index.php?n=Datenbanken.PL-SQL")
-                                li EDB-Wiki: PL/SQL
-                            a(target="_blank" href="http://wikis.gm.fh-koeln.de/wiki_db/index.php?n=Datenbanken.TRIGGER")
-                                li EDB-Wiki: Trigger
-                            a(target="_blank" href="http://wikis.gm.fh-koeln.de/wiki_db/index.php?n=Datenbanken.Funktion")
-                                li EDB-Wiki: Funktionen
-                            a(target="_blank" href="http://wikis.gm.fh-koeln.de/wiki_db/index.php?n=Datenbanken.Prozedur")
-                                li EDB-Wiki: Prozeduren
+            h1 Aufgabe #{question.questionid}
+            p
+                u
+                    strong Beschreibung:
+            p #{question.text}
+            p
+                i
+                    u Benötigte Tabellen:
+                |   #{question.neededtable}
+            p
+                i
+                    u Hinweis:
+                |   Klicke unten auf den Tabellennamen in der Liste, um dir diese anzeigen zu lassen!
+            form(
+                id='mct_domains_form'
+                class=''
+                method='post'
+                action='./evaluation'
+            )
+                small
+                    strong Aufgabe programmieren:
+                textarea(class='form-control' rows="10" name="test_trigger" id="code" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}")
+                    | #{test_trigger}
+                input(type='hidden' name='question_id' value=question.questionid)
+                input(type='hidden' name='needed_tables' value=question.neededtable)
+                br
+                button(class='btn btn-danger btn-block') PL/SQL-Code prüfen
+                br
+        hr
+        div(class='row')
+            div(class='col-md-3')
+                h4 Alle Tabellen
+                ul
+                    a(target="popup" href="/table/Abteilungen" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Abteilungen
+                    a(target="popup" href="/table/Angestellte" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Angestellte
+                    a(target="popup" href="/table/Artikel" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Artikel
+                    a(target="popup" href="/table/Auftraege" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Auftraege
+                    a(target="popup" href="/table/Auftragspositionen" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Auftragsposition
+                    a(target="popup" href="/table/Geh_Klassen" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Geh_Klassen
+                    a(target="popup" href="/table/Gehaltsprotokoll" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Gehaltsprotokoll
+                    a(target="popup" href="/table/Kunden" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Kunden
+                    a(target="popup" href="/table/Lager" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Lager
+                    a(target="popup" href="/table/Lagerbestand" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Lagerbestand
+            div(class='col-md-3')
+                h4 &nbsp;
+                ul
+                    a(target="popup" href="/table/Lieferanten" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Lieferanten
+                    a(target="popup" href="/table/Lieferprogramme" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Lieferprogramme
+                    a(target="popup" href="/table/Lieferungen" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Lieferungen
+                    a(target="popup" href="/table/Orte" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Orte
+                    a(target="popup" href="/table/Positionsarchiv" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Positionsarchiv
+                    a(target="popup" href="/table/Struktur" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Struktur
+                    a(target="popup" href="/table/Teile" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Teile
+                    a(target="popup" href="/table/Teile_Werke" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Teile_Werke
+                    a(target="popup" href="/table/Werke" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Werke
+            div(class='col-md-3')
+                h4 Sonstiges
+                ul
+                    a(target="popup" href="/table/Rechnungen" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li View: Rechnungen
+                    a(target="popup" href="/diagramm" onClick="javascript:open('', 'popup', 'height=800,width=1400,resizable=no')")
+                        li Diagramm: Tabellen
+            div(class='col-md-3')
+                h4 Tipps & Tricks
+                ul
+                    a(target="_blank" href="http://wikis.gm.fh-koeln.de/wiki_db/index.php?n=Datenbanken.PL-SQL")
+                        li EDB-Wiki: PL/SQL
+                    a(target="_blank" href="http://wikis.gm.fh-koeln.de/wiki_db/index.php?n=Datenbanken.TRIGGER")
+                        li EDB-Wiki: Trigger
+                    a(target="_blank" href="http://wikis.gm.fh-koeln.de/wiki_db/index.php?n=Datenbanken.Funktion")
+                        li EDB-Wiki: Funktionen
+                    a(target="_blank" href="http://wikis.gm.fh-koeln.de/wiki_db/index.php?n=Datenbanken.Prozedur")
+                        li EDB-Wiki: Prozeduren
 
 block append foot_scripts
     script(src='/js/codemirror.js')
