@@ -30,6 +30,10 @@ app.get('/table/:tableName', async (req, res) => {
     res.render(path + 'table', variables)
 })
 
+app.get('/diagram', (req, res) => {
+    res.render(path + 'diagram', {})
+})
+
 /*
 Submodules
  */
