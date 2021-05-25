@@ -17,4 +17,13 @@ router.get('/questions', async (req, res) => {
     res.render(path + 'questions', variables)
 })
 
+router.get('/question/:id', async (req, res) => {
+    let variables = {question: await service.getQuestion(req.params.id)}
+    res.render(path + 'question', variables)
+})
+
+router.post('trigger/evaluation', async (req, res) => {
+    res.send("Temp")
+})
+
 module.exports = router
