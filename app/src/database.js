@@ -3,7 +3,7 @@ const dbconfig = require('./database/dbconfig')
 
 // Hardcoded list of allowed tableNames as recommended by oracle
 // https://oracle.github.io/node-oracledb/doc/api.html#intro
-const validTables = ['ABTEILUNGEN', 'ANGESTELLTE', 'ARTIKEL', 'AUFTRAEGE', 'AUFTRAGSPOSITION', 'GEH_KLASSEN',
+const validTables = ['ABTEILUNGEN', 'ANGESTELLTE', 'ARTIKEL', 'AUFTRAEGE', 'AUFTRAGSPOSITIONEN', 'GEH_KLASSEN',
     'GEHALTSPROTOKOLL', 'KUNDEN', 'LAGER', 'LAGERBESTAND', 'LIEFERANTEN', 'LIEFERPROGRAMME', 'LIEFERUNGEN', 'ORTE',
     'POSITIONSARCHIV', 'STRUKTUR', 'TEILE', 'TEILE_WERKE', 'WERKE', 'RECHNUNGEN']
 
