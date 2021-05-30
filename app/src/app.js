@@ -16,18 +16,22 @@ app.set('view engine', 'pug')
 app.use(express.static(__dirname))
 
 /*
-Application Code
+    Application Code
 */
 app.get(["/", "/index"], async (req, res) => {
     res.render(path + 'plsql', {})
 })
 
-app.get('/table/:tableName', async (req, res) => {
-    let variables = {
-        tableName: req.params.tableName,
-        table: await service.getFormattedTable(req.params.tableName)
+app.get('/table/:tableName', async (req, res, next) => {
+    try {
+        let variables = {
+            tableName: req.params.tableName,
+            table: await service.getFormattedTable(req.params.tableName)
+        }
+        res.render(path + 'table', variables)
+    } catch (err) {
+        next(err)
     }
-    res.render(path + 'table', variables)
 })
 
 app.get('/diagram', (req, res) => {
@@ -35,9 +39,15 @@ app.get('/diagram', (req, res) => {
 })
 
 /*
-Submodules
+    Submodules
  */
 app.use('/trigger', triggerRouter)
+
+// Simple error handling
+app.use((err, req, res, next) => {
+    console.error(err)
+    res.render(path + '500', { error: error })
+})
 
 // Start server
 app.listen(8080, () => {

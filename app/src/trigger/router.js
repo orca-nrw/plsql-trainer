@@ -12,14 +12,22 @@ router.get('/', async (req, res) => {
     res.render(path + 'trigger', {})
 })
 
-router.get('/questions', async (req, res) => {
-    let variables = {questions: await service.getQuestions()}
-    res.render(path + 'questions', variables)
+router.get('/questions', async (req, res, next) => {
+    try {
+        let variables = { questions: await service.getQuestions() }
+        res.render(path + 'questions', variables)
+    } catch (err) {
+        next(err)
+    }
 })
 
-router.get('/question/:id', async (req, res) => {
-    let variables = {question: await service.getQuestion(req.params.id)}
-    res.render(path + 'question', variables)
+router.get('/question/:id', async (req, res, next) => {
+    try {
+        let variables = { question: await service.getQuestion(req.params.id) }
+        res.render(path + 'question', variables)
+    } catch (err) {
+        next(err)
+    }
 })
 
 router.post('trigger/evaluation', async (req, res) => {
