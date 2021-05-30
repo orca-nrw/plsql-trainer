@@ -14,7 +14,9 @@ router.get('/', async (req, res) => {
 
 router.get('/questions', async (req, res, next) => {
     try {
-        let variables = { questions: await service.getQuestions() }
+        let variables = { 
+            questions: await service.getQuestions() 
+        }
         res.render(path + 'questions', variables)
     } catch (err) {
         next(err)
@@ -23,7 +25,9 @@ router.get('/questions', async (req, res, next) => {
 
 router.get('/question/:id', async (req, res, next) => {
     try {
-        let variables = { question: await service.getQuestion(req.params.id) }
+        let variables = {
+            question: await service.getQuestion(req.params.id)
+        }
         res.render(path + 'question', variables)
     } catch (err) {
         next(err)
