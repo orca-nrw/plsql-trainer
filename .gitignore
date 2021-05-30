@@ -108,3 +108,6 @@ dist
 
 # Database Secrets
 app/src/database/dbconfig.js
+
+# IntelliJ files
+.idea
