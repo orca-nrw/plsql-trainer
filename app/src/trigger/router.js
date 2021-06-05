@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const service = require('./service')
+const validator = require('./validator')
 
 /*
     Server Configuration
@@ -34,8 +35,21 @@ router.get('/question/:id', async (req, res, next) => {
     }
 })
 
-router.post('trigger/evaluation', async (req, res) => {
-    res.send("Temp")
+router.post('/evaluation', async (req, res, next) => {
+    let questionId = req.body['question_id']
+    let testTrigger = req.body['test_trigger']
+    let neededTables = req.body['needed_tables']
+
+    // Try-Catch might be more elegant?
+    let validationResults = validator.validateTrigger(testTrigger, neededTables)
+    if (!validationResults.isValid) {
+        
+    } else {
+        variables['test_success'] = false
+        variables['test_result'] = validationResults.errorMessage
+    }
+
+    res.render(path + 'evaluation', variables)
 })
 
 module.exports = router
