@@ -111,3 +111,6 @@ app/src/database/dbconfig.js
 
 # IntelliJ files
 .idea
+
+# VSCode files
+.vscode
