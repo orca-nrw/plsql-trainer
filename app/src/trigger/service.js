@@ -41,7 +41,7 @@ async function getQuestions() {
         let formattedQuestion = formatQuestion(rawQuestions.metaData, row)
         formattedQuestions.push(formattedQuestion)
     }
-    formattedQuestions.sort((x,y) => x.questionid - y.questionid)
+    formattedQuestions.sort((x, y) => x.questionid - y.questionid)
     return formattedQuestions
 }
 
