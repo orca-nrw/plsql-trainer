@@ -81,6 +81,23 @@ async function getRawTriggerEvaluation(questionId, testTrigger) {
     return { metaData: metaData, rows: rows }
 }
 
+async function getRawFiringStatements(questionId) {
+    let connection
+    let result
+
+    connection = await oracledb.getConnection(dbconfig)
+    result = await connection.execute(
+        `SELECT FIRINGCODE
+        FROM FIRINGSTATEMENTS
+        WHERE QUESTIONID = :question_id
+        ORDER BY EXECORDER ASC`,
+        {
+            question_id: questionId
+        }
+    )
+    await connection.close()
+
+    return result
 }
 
 module.exports = {
