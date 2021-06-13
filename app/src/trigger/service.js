@@ -45,7 +45,45 @@ async function getQuestions() {
     return formattedQuestions
 }
 
+/**
+ * Wrapper to turn a DatabaseResponse into an evaluation
+ * 
+ * Warning: Depending on the resultnumber the format of the resulting object returned by the database varies
+ * @param {number} questionId 
+ * @param {string} testTrigger 
+ * @returns {Promise<*>}
+ */
+async function evaluateTrigger(questionId, testTrigger) {
+    let evaluation = {}
+    let rawEvaluation = await database.getRawTriggerEvaluation(questionId, testTrigger)
+    
+    // Map metaData-Keys to corresponding values
+    for (let i in rawEvaluation.metaData) {
+        evaluation[rawEvaluation.metaData[i].name.toLowerCase()] = rawEvaluation.rows[0][i]
+    }
+
+    return evaluation
+}
+
+/**
+ * Wrapper to turn a DatabaseResponse into a firingStatement
+ * @param {number} questionId 
+ * @returns {Promise<*>}
+ */
+async function getFiringStatements(questionId) {
+    let firingStatements = {}
+    let rawFiringStatements = await database.getRawFiringStatements(questionId)
+
+    for(let i in rawFiringStatements.metaData) {
+        firingStatements[rawFiringStatements.metaData[i].name.toLowerCase()] = rawFiringStatements.rows[0][i]
+    }
+
+    return firingStatements
+}
+
 module.exports = {
     getQuestion,
-    getQuestions
+    getQuestions,
+    evaluateTrigger,
+    getFiringStatements
 }
