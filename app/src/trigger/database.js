@@ -47,25 +47,39 @@ async function getRawQuestions() {
     return result
 }
 
-async function getFunctionResult() {
+/**
+ * Use package-function evaluate_question to evaluate the testTrigger.
+ * 
+ * WARNING: The shape of the return varies depending on the resultnumber.
+ * @param {number} questionId 
+ * @param {string} testTrigger 
+ * @returns 
+ */
+async function getRawTriggerEvaluation(questionId, testTrigger) {
     let connection
+    let result
 
     connection = await oracledb.getConnection(dbconfig)
-    const result = await connection.execute(
+    result = await connection.execute(
         `BEGIN
-                :cursor := get_question(:id);
+            :cursor := edb_plsql_app.evaluate_question(:question_id, :test_trigger, :identifier_key);
              END;`,
         {
-            id: 2,
-            cursor: {dir: oracledb.BIND_OUT, type: oracledb.CURSOR}
+            question_id: questionId,
+            test_trigger: testTrigger,
+            identifier_key: 'Test',
+            cursor: { dir: oracledb.BIND_OUT, type: oracledb.CURSOR }
         }
     )
-    console.log(result.outBinds.cursor.metaData)
-    let rows = await result.outBinds.cursor.getRows(50)
-    console.log(rows[0][4])
+    let resultSet = result.outBinds.cursor
+
+    let metaData = resultSet.metaData
+    let rows = await resultSet.getRows(1)
 
     await connection.close()
 
+    return { metaData: metaData, rows: rows }
+}
 
 }
 
