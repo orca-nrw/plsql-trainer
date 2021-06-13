@@ -63,7 +63,7 @@ async function getRawTriggerEvaluation(questionId, testTrigger) {
     result = await connection.execute(
         `BEGIN
             :cursor := edb_plsql_app.evaluate_question(:question_id, :test_trigger, :identifier_key);
-             END;`,
+        END;`,
         {
             question_id: questionId,
             test_trigger: testTrigger,
