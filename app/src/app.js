@@ -12,6 +12,9 @@ let path = __dirname + '/views/'
 // Use pug
 app.set('view engine', 'pug')
 
+// Parse Post-Body
+app.use(express.urlencoded())
+
 // Handle static css and js files automatically
 app.use(express.static(__dirname))
 
