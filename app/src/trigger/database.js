@@ -102,5 +102,7 @@ async function getRawFiringStatements(questionId) {
 
 module.exports = {
     getRawQuestion,
-    getRawQuestions
+    getRawQuestions,
+    getRawTriggerEvaluation,
+    getRawFiringStatements
 }
