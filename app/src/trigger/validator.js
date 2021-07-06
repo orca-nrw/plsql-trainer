@@ -64,6 +64,7 @@ function checkAccessesTables(trigger, neededTables) {
         'GEHALTSPROTOKOLL', 'KUNDEN', 'LAGER', 'LAGERBESTAND', 'LIEFERANTEN', 'LIEFERPROGRAMME', 'ORTE',
         'POSITIONSARCHIV', 'QUESTIONS', 'STRUKTUR', 'TEILE', 'TEILE_WERKE', 'WERKE', 'RECHNUNGEN']
 
+    neededTables = neededTables.split(',')
     neededTables = neededTables.map(table => table.toUpperCase())
 
     // All tables without needed tables = List of unnecessary tables
