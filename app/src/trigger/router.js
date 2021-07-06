@@ -61,7 +61,7 @@ router.post('/evaluation', async (req, res, next) => {
     
         // Try-Catch might be more elegant?
         let validationResults = validator.validateTrigger(testTrigger, neededTables)
-        if (!validationResults.isValid) {
+        if (validationResults.isValid) {
             let triggerEvaluation = await service.evaluateTrigger(questionId, testTrigger)
             let firingStatements = await service.getFiringStatements(questionId)
 
