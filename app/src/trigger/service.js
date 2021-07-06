@@ -71,12 +71,16 @@ async function evaluateTrigger(questionId, testTrigger) {
  * @returns {Promise<*>}
  */
 async function getFiringStatements(questionId) {
-    let firingStatements = {}
+    let firingStatements = []
     let rawFiringStatements = await database.getRawFiringStatements(questionId)
 
-    for(let i in rawFiringStatements.metaData) {
-        firingStatements[rawFiringStatements.metaData[i].name.toLowerCase()] = rawFiringStatements.rows[0][i]
-    }
+    for(let currentRow in rawFiringStatements.rows) {
+        let firingStatement = {}
+        for(let i in rawFiringStatements.metaData) {
+            firingStatement[rawFiringStatements.metaData[i].name.toLowerCase()] = rawFiringStatements.rows[currentRow][i]
+        }
+        firingStatements.push(firingStatement)
+    } 
 
     return firingStatements
 }
