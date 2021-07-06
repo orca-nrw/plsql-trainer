@@ -48,7 +48,7 @@ app.use('/trigger', triggerRouter)
 
 // Simple error handling
 app.use((err, req, res, next) => {
-    console.error(err)
+    console.error(err.stack)
     res.render(path + '500', { error: err })
 })
 
