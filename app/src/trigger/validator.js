@@ -71,6 +71,7 @@ function checkAccessesTables(trigger, neededTables) {
     let unnecessaryTables = allAllowedTables.filter(table => !neededTables.includes(table))
 
     if (stringContains(trigger, unnecessaryTables)) {
+        // TODO: Fix ugly output
         return { isValid: false, errorMessage: `Der Trigger greift auf Tabellen zu, auf die er nicht zugreifen muss! (${unnecessaryTables.toString()})` }
     }
 
