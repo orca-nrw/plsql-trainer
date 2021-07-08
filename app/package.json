@@ -16,5 +16,11 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
+  },
+  "standard": {
+    "ignore": [
+      "src/js",
+      "src/vendor"
+    ]
   }
 }
