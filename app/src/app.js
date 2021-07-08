@@ -24,7 +24,7 @@ app.use(express.static(__dirname))
     Application Code
 */
 app.get(['/', '/index'], async (req, res) => {
-  res.render(viewPath + 'plsql', {})
+  res.render(path.join(viewPath, 'plsql'), {})
 })
 
 app.get('/table/:tableName', async (req, res, next) => {
@@ -33,14 +33,14 @@ app.get('/table/:tableName', async (req, res, next) => {
       tableName: req.params.tableName,
       table: await service.getFormattedTable(req.params.tableName)
     }
-    res.render(viewPath + 'table', variables)
+    res.render(path.join(viewPath, 'table'), variables)
   } catch (err) {
     next(err)
   }
 })
 
 app.get('/diagram', (req, res) => {
-  res.render(viewPath + 'diagram', {})
+  res.render(path.join(viewPath, 'diagram'), {})
 })
 
 /*
@@ -52,7 +52,7 @@ app.use('/functions', functionsRouter)
 // Simple error handling
 app.use((err, req, res, next) => {
   console.error(err.stack)
-  res.render(viewPath + '500', { error: err })
+  res.render(path.join(viewPath, '500'), { error: err })
 })
 
 // Start server
