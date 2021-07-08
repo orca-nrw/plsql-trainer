@@ -13,6 +13,10 @@ router.get('/', async (req, res) => {
     res.render(path + 'trigger', {})
 })
 
+/*
+    Routes
+*/
+
 router.get('/questions', async (req, res, next) => {
     try {
         let variables = { 
