@@ -1,8 +1,9 @@
 const express = require('express')
 const app = express()
-const triggerRouter = require('./trigger/router')
 const service = require('./service')
 const path = require('path')
+const triggerRouter = require('./trigger/router')
+const functionsRouter = require('./functions/router')
 
 /*
     Server Configuration
@@ -46,6 +47,7 @@ app.get('/diagram', (req, res) => {
     Submodules
  */
 app.use('/trigger', triggerRouter)
+app.use('/functions', functionsRouter)
 
 // Simple error handling
 app.use((err, req, res, next) => {
