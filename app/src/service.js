@@ -9,15 +9,15 @@ const db = require('./database')
  * @param {string} tableName
  * @returns {Table}
  */
-async function getFormattedTable(tableName) {
-    let rawTables = await db.getTable(tableName)
-    let table = {
-        headers: rawTables.metaData.map(meta => meta.name),
-        rows: rawTables.rows
-    }
-    return table
+async function getFormattedTable (tableName) {
+  const rawTables = await db.getTable(tableName)
+  const table = {
+    headers: rawTables.metaData.map(meta => meta.name),
+    rows: rawTables.rows
+  }
+  return table
 }
 
 module.exports = {
-    getFormattedTable
+  getFormattedTable
 }
