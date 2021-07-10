@@ -1,6 +1,18 @@
 const database = require('./database')
 
 /**
+ * A function Question
+ * @typedef {Object} Question
+ * @property {string} functionname - Name of the function to be created
+ * @property {string} neededtable - Commaseperated list of required tables
+ * @property {number} questionid - ID of the question
+ * @property {string} questiontyp - Type of the question (Trigger, Function, ...)
+ * @property {string} samplefunction - Example solution
+ * @property {string} testtable - Table to be tested
+ * @property {string} text - Text of the question
+ */
+
+/**
  * Transform DatabaseResponse with a single row into a formatted Question
  * @param {{name: string}[]} metaData
  * @param {any[]} row
@@ -17,7 +29,7 @@ function formatQuestion (metaData, row) {
 
 /**
  * Wrapper to turn DatabaseResponse into a list of FuncQuestions
- * @returns {Promise<*>}
+ * @returns {Promise<Question[]>}
  */
 async function getFuncQuestions () {
   const formattedQuestions = []
@@ -32,8 +44,8 @@ async function getFuncQuestions () {
 
 /**
  * Wrapper to turn DatabaseResponse into a FuncQuestion
- * @param {number} questionId
- * @returns {Promise<*>}
+ * @param {number} questionId - Question ID
+ * @returns {Promise<Question>}
  */
 async function getFuncQuestion (questionId) {
   const rawQuestion = await database.getRawFuncQuestion(questionId)
