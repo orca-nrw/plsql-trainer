@@ -42,7 +42,7 @@ async function getRawQuestions () {
  * WARNING: The shape of the return varies depending on the resultnumber.
  * @param {number} questionId
  * @param {string} testTrigger
- * @returns
+ * @returns {DatabaseResponse}
  */
 async function getRawTriggerEvaluation (questionId, testTrigger) {
   const connection = await oracledb.getConnection(dbconfig)
@@ -67,6 +67,11 @@ async function getRawTriggerEvaluation (questionId, testTrigger) {
   return { metaData: metaData, rows: rows }
 }
 
+/**
+ * Query the database for all statements used to test the trigger
+ * @param {number} questionId
+ * @returns {DatabaseResponse}
+ */
 async function getRawFiringStatements (questionId) {
   const connection = await oracledb.getConnection(dbconfig)
   const result = await connection.execute(
