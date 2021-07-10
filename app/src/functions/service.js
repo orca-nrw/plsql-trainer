@@ -52,7 +52,48 @@ async function getFuncQuestion (questionId) {
   return formatQuestion(rawQuestion.metaData, rawQuestion.rows[0])
 }
 
+// TODO: Typedef FunctionEvaluation
+/**
+ * Wrapper to turn a DatabaseResponse into a FunctionEvaluation
+ * @param {number} questionId
+ * @param {string} userFunction
+ * @returns {Promise<*>}
+ */
+async function evaluateFunction (questionId, userFunction) {
+  const evaluation = {}
+  const rawEvaluation = await database.getRawFunctionEvaluation(questionId, userFunction)
+
+  // Map metaData-Keys to corresponding values
+  for (const i in rawEvaluation.metaData) {
+    evaluation[rawEvaluation.metaData[i].name.toLowerCase()] = rawEvaluation.rows[0][i]
+  }
+
+  return evaluation
+}
+
+/**
+ * Wrapper to turn a DatabaseResponse into a TestCall
+ * @param {number} questionId
+ * @returns {Promise<*>}
+ */
+async function getTestCalls (questionId) {
+  const testCalls = []
+  const rawTestCalls = await database.getRawTestCalls(questionId)
+
+  for (const currentRow in rawTestCalls.rows) {
+    const testCall = {}
+    for (const i in rawTestCalls.metaData) {
+      testCall[rawTestCalls.metaData[i].name.toLowerCase()] = rawTestCalls.rows[currentRow][i]
+    }
+    testCalls.push(testCall)
+  }
+
+  return testCalls
+}
+
 module.exports = {
   getFuncQuestions,
-  getFuncQuestion
+  getFuncQuestion,
+  evaluateFunction,
+  getTestCalls
 }
