@@ -33,14 +33,7 @@ block content
 
                                         p #{question.text}
                                         form(
-                                        id='mct_domains_form'
-                                        class=''
-                                        method='get'
-                                        action='/functions/question'
+                                            id='mct_domains_form'
+                                            action='/functions/question/' + question.questionid
                                         )
-                                            input(
-                                            type='hidden'
-                                            name='question'
-                                            value=question.questionid
-                                            )
                                             button(class='btn btn-block btn-danger') Loslegen
