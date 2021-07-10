@@ -1,6 +1,10 @@
 const oracledb = require('oracledb')
 const dbconfig = require('../database/dbconfig')
 
+/**
+ * Query database for list of all function questions
+ * @returns {DatabaseResponse}
+ */
 async function getRawQuestions () {
   const connection = await oracledb.getConnection(dbconfig)
   const result = await connection.execute(
@@ -12,6 +16,11 @@ async function getRawQuestions () {
   return result
 }
 
+/**
+ * Query database for a function question
+ * @param {number} questionId
+ * @returns {DatabaseResponse}
+ */
 async function getRawQuestion (questionId) {
   const connection = await oracledb.getConnection(dbconfig)
   const result = await connection.execute(
