@@ -1,8 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const path = require('path')
-// const service = require('./service')
-// const validator = require('./validator')
+const service = require('./service')
 
 /*
     Server Configuration
@@ -21,7 +20,7 @@ router.get('/', async (req, res) => {
 router.get('/questions', async (req, res, next) => {
   try {
     const variables = {
-      // TODO
+      questions: await service.getFuncQuestions()
     }
     res.render(path.join(viewPath, 'questions'), variables)
   } catch (err) {
@@ -32,7 +31,7 @@ router.get('/questions', async (req, res, next) => {
 router.get('/question/:id', async (req, res, next) => {
   try {
     const variables = {
-      // TODO
+      question: await service.getFuncQuestion(req.params.id)
     }
     res.render(path.join(viewPath, 'question'), variables)
   } catch (err) {
@@ -43,8 +42,9 @@ router.get('/question/:id', async (req, res, next) => {
 router.post('/question/:id', async (req, res, next) => {
   try {
     const variables = {
-      // TODO
+      question: await service.getFuncQuestion(req.params.id)
     }
+    variables.test_trigger = req.body.test_trigger
 
     res.render(path.join(viewPath, 'question'), variables)
   } catch (err) {
