@@ -18,36 +18,35 @@ block content
         br
 
         div(class="container main-content-container")
-            each question in questions
-                h1 Aufgabe #{question.questionid}
-                p
-                    u
-                        strong Beschreibung:
-                p #{question.text}
-                p
-                    i
-                        u Benötigte Tabellen:
-                    |   #{question.neededtable}
-                p
-                    i
-                        u Hinweis:
-                    |   Klicke unten auf den Tabellennamen in der Liste, um dir diese anzeigen zu lassen!
-                form(
-                id='mct_domains_form'
-                class=''
-                method='post'
-                action='./evaluation'
-                )
-                    small
-                        strong Aufgabe programmieren:
-                    textarea(class='form-control' rows="10" name="user_function" id="code" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}")
-                        | #{user_function}
-                    input(type='hidden' name='question_id' value=question.questionid)
-                    input(type='hidden' name='needed_tables' value=question.neededtable)
-                    input(type='hidden' name='functionname' value=question.functionname)
-                    br
-                    button(class='btn btn-danger btn-block') PL/SQL-Code prüfen
-                    br
+            h1 Aufgabe #{question.questionid}
+            p
+                u
+                    strong Beschreibung:
+            p #{question.text}
+            p
+                i
+                    u Benötigte Tabellen:
+                |   #{question.neededtable}
+            p
+                i
+                    u Hinweis:
+                |   Klicke unten auf den Tabellennamen in der Liste, um dir diese anzeigen zu lassen!
+            form(
+            id='mct_domains_form'
+            class=''
+            method='post'
+            action='functions/evaluation'
+            )
+                small
+                    strong Aufgabe programmieren:
+                textarea(class='form-control' rows="10" name="user_function" id="code" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}")
+                    | #{user_function}
+                input(type='hidden' name='question_id' value=question.questionid)
+                input(type='hidden' name='needed_tables' value=question.neededtable)
+                input(type='hidden' name='functionname' value=question.functionname)
+                br
+                button(class='btn btn-danger btn-block') PL/SQL-Code prüfen
+                br
             hr
             div(class='row')
                 div(class='col-md-3')
