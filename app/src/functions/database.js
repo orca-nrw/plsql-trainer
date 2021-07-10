@@ -5,7 +5,7 @@ const dbconfig = require('../database/dbconfig')
  * Query database for list of all function questions
  * @returns {DatabaseResponse}
  */
-async function getRawQuestions () {
+async function getRawFuncQuestions () {
   const connection = await oracledb.getConnection(dbconfig)
   const result = await connection.execute(
     `SELECT *
@@ -21,7 +21,7 @@ async function getRawQuestions () {
  * @param {number} questionId
  * @returns {DatabaseResponse}
  */
-async function getRawQuestion (questionId) {
+async function getRawFuncQuestion (questionId) {
   const connection = await oracledb.getConnection(dbconfig)
   const result = await connection.execute(
     `SELECT *
@@ -37,6 +37,6 @@ async function getRawQuestion (questionId) {
 }
 
 module.exports = {
-  getRawQuestions,
-  getRawQuestion
+  getRawFuncQuestions,
+  getRawFuncQuestion
 }
