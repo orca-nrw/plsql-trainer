@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const service = require('./service')
-const validator = require('./validator')
+const validator = require('../util/validator')
 const path = require('path')
 
 /*
