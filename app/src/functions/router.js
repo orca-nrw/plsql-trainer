@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const path = require('path')
 const service = require('./service')
+const validator = require('../util/validator')
 
 /*
     Server Configuration
@@ -56,8 +57,23 @@ router.post('/evaluation', async (req, res, next) => {
   try {
     const variables = {}
 
-    // TODO
+    const questionId = req.body.question_id
+    const userFunction = req.body.user_function
+    const neededTables = req.body.needed_tables
+    const functionName = req.body.functionname
 
+    const validationResults = validator.validateFunction(userFunction, neededTables, functionName)
+    if (validationResults.isValid) {
+      const functionEvaluation = await service.evaluateFunction(questionId, userFunction)
+      const functionCalls = await service.getTestCalls(questionId)
+
+      variables.evaluation = functionEvaluation
+      variables.test_success = true
+      variables.function_calls = functionCalls
+    } else {
+      variables.test_success = false
+      variables.test_result = validationResults.errorMessage
+    }
     res.render(path.join(viewPath, 'evaluation'), variables)
   } catch (err) {
     next(err)
