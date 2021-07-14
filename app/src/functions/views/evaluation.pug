@@ -50,7 +50,6 @@ block content
                         method='post'
                         action='./question/' + question_id
                         )
-                            input(type='hidden', name='question_id', value=question_id)
                             input(type='hidden', name='user_function' value=user_function)
                             button(type='submit', class='btn btn-block btn-success') Weiter versuchen: PL/SQL-Code verbessern
 
@@ -83,9 +82,8 @@ block content
                     form(
                     class=''
                     method='post'
-                    action='./question'
+                    action='./question/' + question_id
                     )
-                        input(type='hidden', name='question_id', value=question_id)
                         input(type='hidden', name='user_function' value=user_function)
                         button(type='submit', class='btn btn-block btn-success') Weiter versuchen: PL/SQL-Code verbessern
 
