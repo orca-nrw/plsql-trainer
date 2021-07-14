@@ -10,10 +10,6 @@ const validator = require('../util/validator')
 
 const viewPath = path.join(__dirname, 'views')
 
-router.get('/', async (req, res) => {
-  res.render(path.join(viewPath, 'functions'), {})
-})
-
 /*
     Routes
 */
