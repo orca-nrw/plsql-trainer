@@ -4,6 +4,7 @@ const service = require('./service')
 const path = require('path')
 const triggerRouter = require('./trigger/router')
 const functionsRouter = require('./functions/router')
+const proceduresRouter = require('./procedures/router')
 
 /*
     Server Configuration
@@ -48,6 +49,7 @@ app.get('/diagram', (req, res) => {
  */
 app.use('/trigger', triggerRouter)
 app.use('/functions', functionsRouter)
+app.use('/procedures', proceduresRouter)
 
 // Simple error handling
 app.use((err, req, res, next) => {
