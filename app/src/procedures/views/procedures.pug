@@ -1,0 +1,44 @@
+extends ../../../../views/layout
+
+block append stylesheets
+    link(rel='stylesheet', type='text/css', href='/apps/plsqltrainer/css/style.css')
+
+block content
+    div(class="main-wrapper" role="main")
+
+        include ../../../../views/errors.pug
+        include ../../../../views/success.pug
+
+        ol(class="breadcrumb")
+            li(class="active")
+                strong PL/SQL-Trainer (Procedure-Trainer)
+            li(class="active") Startseite
+        br
+
+        div(class="container main-content-container")
+            if !user
+                //login view
+                include ../../../../bin/auth/views/login
+
+            else
+                div.jumbotron
+                    center
+                      h1 Procedures-Trainer
+                    p(class="lead") 
+                     | Mit dem Trainer für Prozeduren können sie interaktiv in das Thema Oracle-PL/SQL und aktive Datenbanken einsteigen. Nach einer vorgegebenen 
+                     | Aufgabenbeschreibung erstellen Sie selbst eine PL/SQL-Prozedur, die temporär in die Datenbank eingestellt, kompiliert und ausgeführt wird.
+                    p(class="lead") 
+                     | Es werden Ihnen Oracle-Fehlermeldungen zurückgeliefert, wenn Sie einen Syntaxfehler machen. Dabei ist zu beachten, 
+                     | dass der vorgegebene Name für die Prozedur verwendet wird.
+                    p(class="lead") 
+                     | Falls die Prozedur syntaktisch korrekt ist, wird geprüft, ob auch die Semantik der im Aufgabentext beschriebenen Anforderung genügt. 
+                     | Dazu wird die von Ihnen erstellte Prozedur aufgerufen und mit der Musterlösung verglichen.
+                    center
+                      form(
+                      class=''
+                      method='get'
+                      action='/apps/plsql/procedures/questions'
+                      )
+
+                        button(type='submit', class='btn btn-primary btn-lg') Test starten
+                    br
