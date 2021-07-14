@@ -10,13 +10,13 @@ const validator = require('../util/validator')
 
 const viewPath = path.join(__dirname, 'views')
 
-router.get('/', async (req, res) => {
-  res.render(path.join(viewPath, 'functions'), {})
-})
-
 /*
     Routes
 */
+
+router.get('/', async (req, res) => {
+  res.render(path.join(viewPath, 'functions'), {})
+})
 
 router.get('/questions', async (req, res, next) => {
   try {

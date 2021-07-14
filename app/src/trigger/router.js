@@ -10,13 +10,13 @@ const path = require('path')
 
 const viewPath = path.join(__dirname, 'views')
 
-router.get('/', async (req, res) => {
-  res.render(path.join(viewPath, 'trigger'), {})
-})
-
 /*
     Routes
 */
+
+router.get('/', async (req, res) => {
+  res.render(path.join(viewPath, 'trigger'), {})
+})
 
 router.get('/questions', async (req, res, next) => {
   try {
