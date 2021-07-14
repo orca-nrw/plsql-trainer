@@ -1,14 +1,10 @@
-extends ../../../../views/layout
+extends ../../views/layout
 
 block append stylesheets
-    link(rel='stylesheet', type='text/css', href='/apps/plsqltrainer/css/style.css')
+    link(rel='stylesheet', type='text/css', href='/css/style.css')
 
 block content
     div(class="main-wrapper" role="main")
-
-        include ../../../../views/errors.pug
-        include ../../../../views/success.pug
-
         ol(class="breadcrumb")
             li(class="active")
                 strong PL/SQL-Trainer (Procedure-Trainer)
@@ -17,69 +13,63 @@ block content
             li
                 a(href="./questions") Aufgabenübersicht
             li
-                a(href="./question?question="+question_id) Aufgabe bearbeiten
+                a(href="./question/" + question_id) Aufgabe bearbeiten
             li(class="active") Auswertung
         br
 
         div(class="container main-content-container")
-            if !user
-                //login view
-                include ../../../../bin/auth/views/login
+            h1 Auswertung
+            if(evaluations !== undefined)
+                each evaluation in evaluations
+                    if(evaluation.resultnumber == 1)
+                        div(class="alert alert-success")
+                            center
+                                h4
+                                    b Glückwunsch, du hast die Aufgabe richtig gelöst!
+                            p
+                                strong Meldung:
+                            p #{evaluation.resultmessage}
+                            br
+                            form(
+                            class=''
+                            method='get'
+                            action='./questions'
+                            )
 
-            else
-                h1 Auswertung
-                if(evaluations !== undefined)
-                    each evaluation in evaluations
-                        if(evaluation.resultnumber == 1)
-                            div(class="alert alert-success")
-                                center
-                                    h4
-                                        b Glückwunsch, du hast die Aufgabe richtig gelöst!
-                                p
-                                    strong Meldung:
-                                p #{evaluation.resultmessage}
-                                br
-                                form(
-                                class=''
-                                method='get'
-                                action='./questions'
-                                )
+                                button(type='submit', class='btn btn-block btn-primary') Zurück zur Aufgabenübersicht
+                    else
+                        div(class="alert alert-warning")
+                            center
+                                h4
+                                    b Ups, die Aufgabe wurde leider nicht richtig gelöst!
+                            p
+                                strong Meldung:
+                            p #{evaluation.resultmessage}
+                            br
+                            form(
+                            class=''
+                            method='post'
+                            action='./question/' + question_id
+                            )
+                                input(type='hidden', name='user_procedure' value=user_procedure)
+                                button(type='submit', class='btn btn-block btn-success') Weiter versuchen: PL/SQL-Code verbessern
 
-                                    button(type='submit', class='btn btn-block btn-primary') Zurück zur Aufgabenübersicht
-                        else
-                            div(class="alert alert-warning")
-                                center
-                                    h4
-                                        b Ups, die Aufgabe wurde leider nicht richtig gelöst!
-                                p
-                                    strong Meldung:
-                                p #{evaluation.resultmessage}
-                                br
-                                form(
-                                class=''
-                                method='post'
-                                action='./question'
-                                )
-                                    input(type='hidden', name='question_id', value=question_id)
-                                    input(type='hidden', name='user_procedure' value=user_procedure)
-                                    button(type='submit', class='btn btn-block btn-success') Weiter versuchen: PL/SQL-Code verbessern
+                        if (evaluation.resultnumber != -2)
+                            div(class="row")
+                                div(class='col-md-12')
+                                    h4 Querys mit denen die Aufgabe überprüft wurde:
+                                    ul
+                                        each procedure_call in procedure_calls
+                                            li #{procedure_call.call}
 
-                            if (evaluation.resultnumber != -2)
-                                div(class="row")
-                                    div(class='col-md-12')
-                                        h4 Querys mit denen die Aufgabe überprüft wurde:
-                                        ul
-                                            each procedure_call in procedure_calls
-                                                li #{procedure_call.call}
+                                div(class="col-md-6")
+                                    button(class="btn btn-block btn-danger" onclick="CreateTableFromJSON(" + evaluation.resulttesttable + ",'showData')") Zeige meine Tabelle
+                                div(class="col-md-6")
+                                    button(class="btn btn-block btn-danger" onclick="CreateTableFromJSON(" + evaluation.resultreferencetable + ",'showData')") Zeige die Lösungstabelle
 
-                                    div(class="col-md-6")
-                                        button(class="btn btn-block btn-danger" onclick="CreateTableFromJSON(" + evaluation.resulttesttable + ",'showData')") Zeige meine Tabelle
-                                    div(class="col-md-6")
-                                        button(class="btn btn-block btn-danger" onclick="CreateTableFromJSON(" + evaluation.resultreferencetable + ",'showData')") Zeige die Lösungstabelle
-
-                                br
-                                div(class="table-responsive")
-                                    div(id="showData")
+                            br
+                            div(class="table-responsive")
+                                div(id="showData")
 
                 if (test_success == false)
                     div(class="alert alert-warning")
@@ -93,11 +83,10 @@ block content
                         form(
                         class=''
                         method='post'
-                        action='./question'
+                        action='./question/' + question_id
                         )
-                            input(type='hidden', name='question_id', value=question_id)
                             input(type='hidden', name='user_procedure' value=user_procedure)
                             button(type='submit', class='btn btn-block btn-success') Weiter versuchen: PL/SQL-Code verbessern
 
 block append foot_scripts
-    script(src='/apps/plsqltrainer/js/table.js')
+    script(src='/js/table.js')
