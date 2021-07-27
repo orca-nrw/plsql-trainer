@@ -54,7 +54,31 @@ function validateFunction (userFunction, neededTables, functionName) {
 }
 
 /**
- * Checks whether a trigger string contains all nescessary keywords
+ * Checks whether a procedure string is valid in a similar way to triggers
+ * @param {string} userProcedure
+ * @param {string} neededTables
+ * @param {string} procedureName
+ * @returns {ValidationResults}
+ */
+function validateProcedure (userProcedure, neededTables, procedureName) {
+  userProcedure = userProcedure.toUpperCase()
+  procedureName = procedureName.toUpperCase()
+
+  // Perform checks
+  let results = checkProcedureContents(userProcedure, procedureName)
+  if (!results.isValid) return results
+
+  results = checkAccessesTables(userProcedure, neededTables)
+  if (!results.isValid) return results
+
+  results = checkForIllegalSQL(userProcedure)
+  if (!results.isValid) return results
+
+  return { isValid: true, errorMessage: '' }
+}
+
+/**
+ * Checks whether a trigger string contains all necessary keywords
  * @param {String} trigger
  * @returns {ValidationResults}
  */
@@ -84,7 +108,7 @@ function checkTriggerContents (trigger) {
 }
 
 /**
- * Checks whether a function contains all nescessary keywords
+ * Checks whether a function contains all necessary keywords
  * @param {string} userFunction
  * @param {string} functionName
  * @returns {ValidationResults}
@@ -113,6 +137,39 @@ function checkFunctionContents (userFunction, functionName) {
     return { isValid: false, errorMessage: errorBase + "['BEGIN']" }
   }
   if (!stringContains(userFunction, ['END'])) {
+    return { isValid: false, errorMessage: errorBase + "['END']" }
+  }
+
+  return { isValid: true, errorMessage: '' }
+}
+
+/**
+ * Checks whether a procedure contains all necessary keywords
+ * @param {string} userProcedure
+ * @param {string} procedureName
+ * @returns {ValidationResults}
+ */
+function checkProcedureContents (userProcedure, procedureName) {
+  const regex = /(?<=PROCEDURE\W)(\w*)/gm
+  let m
+
+  if ((m = regex.exec(userProcedure)) !== null) {
+    if (m[0] !== procedureName) {
+      return 'Der Name der Prozedur muss ' + procedureName + ' lauten. Deine Prozedur heißt: ' + m[0]
+    }
+  }
+  const errorBase = 'Die Prozedur muss mindestens einen der folgenden Strings enthalten: '
+
+  if (!stringContains(userProcedure, ['CREATE OR REPLACE PROCEDURE', 'CREATE PROCEDURE'])) {
+    return { isValid: false, errorMessage: errorBase + "['CREATE OR REPLACE PROCEDURE', 'CREATE PROCEDURE']" }
+  }
+  if (!stringContains(userProcedure, ['IS', 'AS'])) {
+    return { isValid: false, errorMessage: errorBase + "['IS', 'AS']" }
+  }
+  if (!stringContains(userProcedure, ['BEGIN'])) {
+    return { isValid: false, errorMessage: errorBase + "['BEGIN']" }
+  }
+  if (!stringContains(userProcedure, ['END'])) {
     return { isValid: false, errorMessage: errorBase + "['END']" }
   }
 
@@ -174,5 +231,6 @@ function stringContains (string, array) {
 
 module.exports = {
   validateTrigger,
-  validateFunction
+  validateFunction,
+  validateProcedure
 }
