@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 router.get('/questions', async (req, res, next) => {
   try {
     const variables = {
-      // TODO
+      questions: await service.getProcQuestions()
     }
     res.render(path.join(viewPath, 'questions'), variables)
   } catch (err) {
@@ -32,7 +32,7 @@ router.get('/questions', async (req, res, next) => {
 router.get('/question/:id', async (req, res, next) => {
   try {
     const variables = {
-      // TODO
+      question: await service.getProcQuestion(req.params.id)
     }
     res.render(path.join(viewPath, 'question'), variables)
   } catch (err) {
@@ -43,8 +43,10 @@ router.get('/question/:id', async (req, res, next) => {
 router.post('/question/:id', async (req, res, next) => {
   try {
     const variables = {
-      // TODO
+      question: await service.getProcQuestion(req.params.id)
     }
+    variables.test_trigger = req.body.test_trigger
+
     res.render(path.join(viewPath, 'question'), variables)
   } catch (err) {
     next(err)
@@ -55,7 +57,23 @@ router.post('/evaluation', async (req, res, next) => {
   try {
     const variables = {}
 
-    // TODO
+    const questionId = req.body.question_id
+    const userProcedure = req.body.user_procedure
+    const neededTables = req.body.needed_tables
+    const procedureName = req.body.procname
+
+    const validationResults = validator.validateProcedure(userProcedure, neededTables, procedureName)
+    if (validationResults.isValid) {
+      const procedureEvaluation = await service.evaluateProcedure(questionId, userProcedure)
+      const procedureCalls = await service.getTestCalls(questionId)
+
+      variables.evaluation = procedureEvaluation
+      variables.test_success = true
+      variables.procedure_calls = procedureCalls
+    } else {
+      variables.test_success = false
+      variables.test_result = validationResults.errorMessage
+    }
 
     res.render(path.join(viewPath, 'evaluation'), variables)
   } catch (err) {
