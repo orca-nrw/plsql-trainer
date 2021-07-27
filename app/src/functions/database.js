@@ -2,6 +2,11 @@ const oracledb = require('oracledb')
 const dbconfig = require('../database/dbconfig')
 
 /**
+ * An unformatted response from the database
+ * @typedef {{metaData: [{name: string}], rows: any[]}} DatabaseResponse
+ */
+
+/**
  * Query database for list of all function questions
  * @returns {DatabaseResponse}
  */
