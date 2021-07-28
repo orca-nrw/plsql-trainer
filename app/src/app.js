@@ -16,7 +16,7 @@ const viewPath = path.join(__dirname, 'views')
 app.set('view engine', 'pug')
 
 // Parse Post-Body
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 // Handle static css and js files automatically
 app.use(express.static(__dirname))
