@@ -39,3 +39,6 @@ RUN npm install
 
 # Copy source code into container
 COPY ./src ./src
+
+# Run the server
+CMD ["node", "src/app.js"]
