@@ -23,6 +23,8 @@ Alle vom Trainer benötigten Daten befinden sich im `db` Ordner als Datenbank-Ex
 Der Server erwartet zur Verbindung eine Konfigurationsdatei mit dem Namen `dbconfig.js` im Order `/app/src/database/`.
 Im gleichen Ordner befindet sich eine `dbconfig_template.js`-Datei, die das erwartete Format der Datei enthält und entsprechend kopiert und umbenannt werden kann.
 
+Weitere Beispiele für verschiedene akzeptierte Connection-Strings o.Ä. sind in der offiziellen [Dokumentation der OracleDB-Bibliothek](https://oracle.github.io/node-oracledb/doc/api.html#-151-connection-strings) zu finden.
+
 ### Start des Servers: 
 
 Da für den Betrieb des Servers einige Programme und Dateien notwendig sind, wurde der Server als Docker-Anwendung konzipiert, die alle benötigten Daten automatisch herunterläd und installiert. Daher ist allerdings eine `Docker`-Installation notwendig um den Server wie folgt zu starten:
