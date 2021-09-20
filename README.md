@@ -18,6 +18,11 @@ In EILD wird ein Ansatz mit weitgehender Adaptierbarkeit und Wiederverwendbarkei
 Zum Betrieb des PLSQL-Trainers ist eine Oracle-Instanz notwendig. 
 Alle vom Trainer benötigten Daten befinden sich im `db` Ordner als Datenbank-Export.
 
+### Konfiguration der Datenbank-Verbindung
+
+Der Server erwartet zur Verbindung eine Konfigurationsdatei mit dem Namen `dbconfig.js` im Order `/app/src/database/`.
+Im gleichen Ordner befindet sich eine `dbconfig_template.js`-Datei, die das erwartete Format der Datei enthält und entsprechend kopiert und umbenannt werden kann.
+
 ### Start des Servers: 
 
 Da für den Betrieb des Servers einige Programme und Dateien notwendig sind, wurde der Server als Docker-Anwendung konzipiert, die alle benötigten Daten automatisch herunterläd und installiert. Daher ist allerdings eine `Docker`-Installation notwendig um den Server wie folgt zu starten:
