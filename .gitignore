@@ -114,3 +114,6 @@ app/src/database/dbconfig.js
 
 # VSCode files
 .vscode
+
+# Oracle-Instantclient (due to its license)
+/app/oracle/instantclient-*
