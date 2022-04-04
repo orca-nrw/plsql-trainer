@@ -33,7 +33,7 @@ Da für den Betrieb des Servers einige Programme und Dateien notwendig sind, wur
 - Nun lässt sich ein Docker-Container beispielsweise mit `docker build . -t plsql-trainer` bauen
 - Und mit `docker run -p 8080:8080 -d plsql-trainer` starten
 
-Alternativ kann der Server auch ohne Docker betrieben werden, allerdings müssen hierfür die benötigten Treiber für die Oracle-Datenbank (siehe [/app/oracle](./app/oracle) - Versionen für andere Betriebssysteme lassen sich auf der Oracle-Webseite herunterladen), sowie alle dependencies des Projektes (`npm install`) manuell installiert werden.
+Alternativ kann der Server auch ohne Docker betrieben werden, allerdings müssen hierfür die benötigten Treiber für die Oracle-Datenbank (siehe [/app/oracle](./app/oracle/oracle.md) - Versionen für andere Betriebssysteme lassen sich auf der Oracle-Webseite herunterladen), sowie alle dependencies des Projektes (`npm install`) manuell installiert werden.
 
 ## Lizenz
 [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
