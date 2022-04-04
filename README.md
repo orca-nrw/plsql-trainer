@@ -13,27 +13,7 @@ In EILD wird ein Ansatz mit weitgehender Adaptierbarkeit und Wiederverwendbarkei
 
 ## Verwendung
 
-### Einrichten der Datenbank
-
-Zum Betrieb des PLSQL-Trainers ist eine Oracle-Instanz notwendig. 
-Alle vom Trainer benötigten Daten befinden sich im `db` Ordner als Datenbank-Export.
-
-### Konfiguration der Datenbank-Verbindung
-
-Der Server erwartet zur Verbindung eine Konfigurationsdatei mit dem Namen `dbconfig.js` im Order `/app/src/database/`.
-Im gleichen Ordner befindet sich eine `dbconfig_template.js`-Datei, die das erwartete Format der Datei enthält und entsprechend kopiert und umbenannt werden kann.
-
-Weitere Beispiele für verschiedene akzeptierte Connection-Strings o.Ä. sind in der offiziellen [Dokumentation der OracleDB-Bibliothek](https://oracle.github.io/node-oracledb/doc/api.html#-151-connection-strings) zu finden.
-
-### Start des Servers: 
-
-Da für den Betrieb des Servers einige Programme und Dateien notwendig sind, wurde der Server als Docker-Anwendung konzipiert, die alle benötigten Daten automatisch herunterläd und installiert. Daher ist allerdings eine `Docker`-Installation notwendig um den Server wie folgt zu starten:
-
-- Man öffne zunächst den `app`-Ordner in einem Terminal
-- Nun lässt sich ein Docker-Container beispielsweise mit `docker build . -t plsql-trainer` bauen
-- Und mit `docker run -p 8080:8080 -d plsql-trainer` starten
-
-Alternativ kann der Server auch ohne Docker betrieben werden, allerdings müssen hierfür die benötigten Treiber für die Oracle-Datenbank (siehe [/app/oracle](./app/oracle/oracle.md) - Versionen für andere Betriebssysteme lassen sich auf der Oracle-Webseite herunterladen), sowie alle dependencies des Projektes (`npm install`) manuell installiert werden.
+Eine Installationsanleitung finden Sie im [Wiki - Verwendung](https://github.com/EILD-nrw/plsql-trainer/wiki/Verwendung).
 
 ## Lizenz
 [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
