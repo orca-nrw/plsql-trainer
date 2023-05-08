@@ -85,7 +85,7 @@ Der PLSQL-Trainer wurde ursprünglich von der [Technischen Hochschule Köln][TH 
 
 
 
-[MIT]: https://github.com/EILD-nrw/plsql-trainer/blob/master/LICENCE
+[MIT]: https://github.com/orca-nrw/plsql-trainer/blob/master/LICENSE
 [MIT-shield]: https://img.shields.io/badge/License-MIT-yellow.svg
 [cc-by-sa]: http://creativecommons.org/licenses/by-sa/4.0/
 [cc-by-sa-image]: https://licensebuttons.net/l/by-sa/4.0/88x31.png
